@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>About - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .navbar-brand img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #007bff;
+        }
+        p {
+            color: #343a40;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-list i {
+            color: #28a745;
+            margin-right: 5px;
+        }
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/">
+            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
+            Finance Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828395.png" style="width: 30px; height: 30px;" alt="Login Icon"> Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">
+                        <img src="https://cdn-icons-png.flaticon.com/128/747/747545.png" style="width: 30px; height: 30px;" alt="Sign Up Icon"> Sign Up
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2><i class="fas fa-info-circle"></i> About</h2>
+        <p>This is the Personal Finance Management dashboard, a simple yet effective tool for tracking your expenses and managing your budget efficiently. Our platform provides intuitive features to help you stay on top of your finances.</p>
+        <ul class="feature-list">
+            <li><i class="fas fa-check"></i> Secure user registration and login</li>
+            <li><i class="fas fa-check"></i> Easy expense tracking</li>
+            <li><i class="fas fa-check"></i> Budget management tools</li>
+            <li><i class="fas fa-check"></i> Responsive and user-friendly design</li>
+        </ul>
+        <p>Get started today by signing up and taking control of your financial future!</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

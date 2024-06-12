@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Investments - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar-custom {
+            background-color: #343a40;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-link {
+            color: #ffffff;
+        }
+
+        .navbar-brand img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffdd57 !important;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #007bff;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .form-control,
+        .btn {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .form-control:focus,
+        .btn:focus {
+            transform: scale(1.02);
+        }
+
+        .btn {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .footer {
+            background-color: #585858;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        .footer h5 {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .footer p {
+            color: #bbb;
+        }
+
+        .footer a {
+            color: #fff;
+        }
+
+        .footer a:hover {
+            color: #007bff;
+        }
+
+        .footer .social-icons {
+            margin-top: 10px;
+        }
+
+        .footer .social-icons a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-light bg-light">
+        <a class="navbar-brand" style="color: #585858;"  href="/">
+            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
+            Finance Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="bi bi-speedometer2" style="font-size: 1.5rem; vertical-align: middle;"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout" href="#">
+                        <i class="bi bi-box-arrow-right" style="font-size: 1.5rem; vertical-align: middle;"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2><i class="fas fa-chart-line"></i> Investments</h2>
+
+        <!-- Display success message -->
+        <div th:if="${successMessage}" class="alert alert-success" role="alert">
+            <span th:text="${successMessage}"></span>
+        </div>
+
+        <!-- Display error message -->
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+            <span th:text="${errorMessage}"></span>
+        </div>
+
+        <form th:action="@{/add-investment}" method="post">
+            <div class="form-group">
+                <label for="investmentType">Investment Type</label>
+                <input type="text" class="form-control" placeholder="e.g. stocks, bonds, mutual funds, real estate, etc." id="investmentType" name="investmentType" required>
+            </div>
+            <div class="form-group">
+                <label for="investmentName">Investment Name (Company)</label>
+                <input type="text" class="form-control" placeholder="e.g. Amazon, AmbujaCem" id="investmentName" name="investmentName" required>
+            </div>
+            <div class="form-group">
+                <label for="investmentAmount">Amount</label>
+                <input type="number" class="form-control" id="investmentAmount" name="investmentAmount" required>
+            </div>
+            <div class="form-group">
+                <label for="investmentReturnRate">Return Rate (%)</label>
+                <input type="number" class="form-control" id="investmentReturnRate" name="investmentReturnRate" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add Investment</button>
+        </form>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a href="/logout" class="btn btn-primary">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".logout").click(function(event) {
+                event.preventDefault();
+                $("#logoutModal").modal("show");
+            });
+        });
+    </script>
+</body>
+</html>

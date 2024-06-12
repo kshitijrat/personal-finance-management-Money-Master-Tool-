@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User Dashboard - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .nav-link img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .tab-content h3 {
+            display: flex;
+            align-items: center;
+        }
+
+        .tab-content h3 img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+
+        .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tab-pane {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .feedback-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .feedback-btn:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Logo">
+            Finance Manager
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">
+                        <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" alt="Profile Icon">
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828479.png" alt="Logout Icon">
+                        Logout
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#feedbackModal">
+                        <img src="https://cdn-icons-png.flaticon.com/128/682/682028.png" alt="Feedback Icon">
+                        Feedback
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h2>User Dashboard</h2>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#bank-accounts" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Bank Accounts Icon">
+                    Bank Accounts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#credit-cards" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/484/484167.png" alt="Credit Cards Icon">
+                    Cards
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#investments" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/888/888857.png" alt="Investments Icon">
+                    Investments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#transactions" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/126/126474.png" alt="Transactions Icon">
+                    Transactions
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#budgets" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/2921/2921822.png" alt="Budgets Icon">
+                    Budgets
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#financial-reports" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/476/476745.png" alt="Financial Reports Icon">
+                    Financial Reports
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content mt-4">
+            <div class="tab-pane fade show active" id="bank-accounts">
+                <h3>
+                    <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Bank Accounts Icon">
+                    Bank Accounts
+                </h3>
+                <a class="btn btn-primary" href="/bank-accounts">Manage Bank Accounts</a>
+                <a class="btn btn-primary" href="/bankstatus">Check Bank Status</a>
+            </div>
+            <div class="tab-pane fade" id="credit-cards">
+                <h3>
+                    <img src="https://cdn-icons-png.flaticon.com/128/484/484167.png" alt="Credit Cards Icon">
+                    Credit Cards
+                </h3>
+                <a class="btn btn-primary" href="/credit-cards">Manage Credit Cards</a>
+            </div>
+            <div class="tab-pane fade" id="investments">
+                <h3>
+                    <img src="https://cdn-icons-png.flaticon.com/128/888/888857.png" alt="Investments Icon">
+                    Investments
+                </h3>
+                <a class="btn btn-primary" href="/investments">Manage Investments</a>
+            </div>
+            <div class="tab-pane fade" id="transactions">
+                <h3>
+                    <img src="https://cdn-icons-png.flaticon.com/128/126/126474.png" alt="Transactions Icon">
+                    Transactions
+                </h3>
+                <a class="btn btn-primary" href="/transactions">View Transactions</a>
+            </div>
+            <div class="tab-pane fade" id="budgets">
+                <h3>
+                    <img src="https://cdn-icons-png.flaticon.com/128/2921/2921822.png" alt="Budgets Icon">
+                    Budgets
+                </h3>
+                <a class="btn btn-primary" href="/budgets">Manage Budgets</a>
+            </div>
+            <div class="tab-pane fade" id="financial-reports">
+                <h3>
+                    <img src="https://cdn-icons-png.flaticon.com/128/476/476745.png" alt="Financial Reports Icon">
+                    Financial
+                    Reports
+                </h3>
+                <a class="btn btn-primary" href="/financial-reports">Generate Reports</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a href="/logout" class="btn btn-primary">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Feedback</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Alert messages -->
+
+                    <form th:action="@{/feedback}" method="post">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="
+                            form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i> Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

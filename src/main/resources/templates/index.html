@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #007bff;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: white !important;
+        }
+
+        .navbar-brand img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+
+        .jumbotron {
+            background-color: #e9ecef;
+            padding: 2rem 1rem;
+            text-align: center;
+            background-image: url('https://cdn-icons-png.flaticon.com/128/4242/4242061.png');
+            background-size: 100px;
+            background-repeat: no-repeat;
+            background-position: right bottom;
+        }
+
+        .jumbotron h1 {
+            animation: fadeInDown 1s ease-in-out;
+            color: #007bff;
+        }
+
+        .jumbotron p {
+            animation: fadeInUp 1s ease-in-out;
+            color: #343a40;
+        }
+
+        .btn-primary,
+        .btn-success {
+            margin-top: 10px;
+            width: fit-content;
+        }
+
+        .navbar-toggler {
+            border-color: white;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 20px;
+                height: 20px;
+            }
+
+            .jumbotron {
+                background-size: 80px;
+                text-align: left;
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+        }
+
+        /* Contact form style */
+        .contact-form {
+            background-color: #e9ecef;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .footer {
+            background-color: #585858;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        .footer h5 {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .footer p {
+            color: #bbb;
+        }
+
+        .footer a {
+            color: #fff;
+        }
+
+        .footer a:hover {
+            color: #007bff;
+        }
+
+        .footer .social-icons {
+            margin-top: 10px;
+        }
+
+        .footer .social-icons a {
+            font-size: 24px;
+            margin-right: 15px;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .footer .social-icons a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/">
+            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
+            Finance Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828395.png"
+                            style="width: 30px; height: 30px;" alt="Login Icon"> Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">
+                        <img src="https://cdn-icons-png.flaticon.com/128/747/747545.png"
+                            style="width: 30px; height: 30px;" alt="Sign Up Icon"> Sign Up
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="jumbotron mt-4">
+            <h1 class="display-4">Welcome to Personal Finance Manager</h1>
+            <p class="lead">Track your expenses and manage your budget efficiently.</p>
+            <hr class="my-4">
+            <p>Get started by logging in or signing up.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-success btn-lg" href="/register" role="button">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Footer -->
+    <footer class="footer mt-auto py-3" style="border-top-right-radius: 80px; border-top-left-radius: 80px; box-shadow: 5px 5px; opacity: initial;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>About Us</h5>
+                    <p>Empowering individuals to take control of their finances, our project offers a seamless,
+                        user-friendly platform for comprehensive personal financial management. Join us in navigating
+                        the path to financial freedom and security.
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacts</h5>
+                    <p>123, Vijay Nagr, Indore, India</p>
+                    <p>Email: codeX@gmail.com</p>
+                    <p>Phone: +91-9577387493</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <ul class="list-inline social-icons">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

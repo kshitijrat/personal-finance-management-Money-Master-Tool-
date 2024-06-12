@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Budgets - Personal Finance Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding-left: 15px;
+        }
+
+        .alert {
+            display: none;
+        }
+
+        .flaticon-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .animated-input {
+            animation-duration: 0.5s;
+        }
+
+        .navbar-custom {
+            background-color: #1a60a7;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-custom .navbar-nav .nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar-custom .navbar-nav .nav-link:hover {
+            color: #ffdd57 !important;
+        }
+
+        .navbar-brand img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+
+        .budget-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .budget-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .budget-card h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .budget-card p {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/dashboard">
+            <img src="https://cdn-icons-png.flaticon.com/128/2521/2521890.png" alt="Finance Manager"
+                class="budget-icon">
+            Finance Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="fas fa-tachometer-alt mr-1"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout" href="#" id="logout">
+                        <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container animate__animated animate__fadeIn">
+        <div class="row justify-content-center">
+            <div class="col-md-6 animated-input">
+                <h2 style="color: #0056b3;"><i class="fas fa-wallet"></i> Budgets</h2>
+
+                <!-- Success and Error Messages -->
+                <div th:if="${successMessage}" class="alert alert-success animate__animated animate__fadeInDown"
+                    th:text="${successMessage}"></div>
+                <div th:if="${errorMessage}" class="alert alert-danger animate__animated animate__fadeInDown"
+                    th:text="${errorMessage}"></div>
+
+                <form th:action="@{/add-budget}" method="post">
+                    <div class="form-group">
+                        <label for="budgetName"><i class="fas fa-file-invoice-dollar"></i> Budget Name</label>
+                        <input type="text" class="form-control" id="budgetName" name="budgetName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="budgetAmount"><i class="fas fa-dollar-sign"></i> Amount</label>
+                        <input type="number" class="form-control" id="budgetAmount" name="budgetAmount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate"><i class="fas fa-calendar-alt"></i> Start Date</label>
+                        <input type="date" class="form-control" id="startDate" name="budgetStartDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate"><i class="fas fa-calendar-alt"></i> End Date</label>
+                        <input type="date" class="form-control" id="endDate" name="budgetEndDate" required>
+                    </div>
+                    <button type="submit"
+                        class="btn btn-primary btn-block animate__animated animate__pulse animate__infinite"><i
+                            class="fas fa-plus"></i> Add Budget</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div th:each="budget : ${bud}" class="col-md-6">
+                <div class="budget-card animate__animated animate__fadeInUp">
+                    <h3 th:text="${budget.budgetName}"></h3>
+                    <p><strong>Amount:</strong> <span th:text="${budget.budgetAmount}"></span></p>
+                    <p><strong>Start Date:</strong> <span th:text="${budget.budgetStartDate}"></span></p>
+                    <p><strong>End Date:</strong> <span th:text="${budget.budgetEndDate}"></span></p>
+                    <a th:href="@{/budget/{id}(id=${budget.budgetId})}" class="btn btn-info"><i
+                            class="fas fa-info-circle"></i> View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#logout').click(function (e) {
+                e.preventDefault();
+                $('#logoutModal').modal('show');
+            });
+
+            $('#confirmLogout').click(function () {
+                window.location.href = "/logout";
+            });
+        });
+    </script>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="
+                    btn btn-primary" id="confirmLogout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

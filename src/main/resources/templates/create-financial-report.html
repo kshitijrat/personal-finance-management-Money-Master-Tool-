@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Financial Report - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin-top: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h2 {
+            color: #343a40;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .form-icon {
+            position: absolute;
+            right: 15px;
+            top: 35px;
+            font-size: 20px;
+            color: #6c757d;
+        }
+        .header-img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            .form-icon {
+                top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://cdn-icons-png.flaticon.com/128/2521/2521890.png" alt="Finance Manager" class="header-img">
+        <h2>Create Financial Report</h2>
+        <form th:action="@{/financial-report}" method="post">
+            <div class="form-group position-relative">
+                <label for="reportName">Report Name</label>
+                <input type="text" class="form-control" id="reportName" name="reportName" required>
+                <i class="fas fa-file-alt form-icon"></i>
+            </div>
+            <div class="form-group position-relative">
+                <label for="reportGeneratedDate">Generated Date</label>
+                <input type="date" class="form-control" id="reportGeneratedDate" name="reportGeneratedDate" required>
+                <i class="fas fa-calendar-alt form-icon"></i>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-plus"></i> Create Report</button>
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

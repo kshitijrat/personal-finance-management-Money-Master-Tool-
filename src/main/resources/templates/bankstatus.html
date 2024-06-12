@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Bank Status</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .navbar-custom {
+            background-color: #343a40;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-link {
+            color: #ffffff;
+        }
+
+        .bank-icon {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom navbar-light bg-light">
+        <a class="navbar-brand" href="/dashboard">
+            <img src="https://cdn-icons-png.flaticon.com/128/2521/2521890.png" alt="Finance Logo" class="bank-icon mr-2">
+            Personal Finance
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/dashboard}">
+                        <i class="fas fa-chart-line mr-1"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/logout}">
+                        <i class="fas fa-sign-out-alt mr-1"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>User Bank Status</h2>
+        <form id="bankStatusForm" th:action="@{/checkPassword}" method="post">
+            <div class="form-group" id="passwordDiv" style="display: none;">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password"
+                    placeholder="Enter your password" required>
+            </div>
+            <input type="hidden" id="accountId" name="id">
+            <button type="submit" id="btnsubmit" style="display: none;" class="btn btn-primary">Submit</button>
+        </form>
+
+        <div id="bankList" style="margin-top: 20px;">
+            <h4>Your Banks</h4>
+            <ul class="list-group" th:each="bank : ${bank}">
+                <li class="list-group-item shadow-sm mb-2">
+                    <input type="number" name="id" th:value="${bank.accountId}" hidden>
+                    <img src="https://cdn-icons-png.flaticon.com/128/3635/3635987.png"
+                        class="bank-icon mr-2" alt="">
+                    <strong th:text="${bank.bankName}"></strong>
+                    <br>
+                    <small th:text="${bank.accountType}"></small><br>
+                    <small th:text="${bank.accountNo}"></small><br>
+                    <a href="#" class="check-balance-link" th:data-id="${bank.accountId}">
+                        <i class="fas fa-money-check mr-1"></i>
+                        Check Balance
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div th:if="${error != null}" class="alert alert-danger mt-3" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.check-balance-link').click(function (e) {
+                e.preventDefault();
+                const accountId = $(this).data('id');
+                $('#passwordDiv').show();
+                $('#btnsubmit').show();
+                $('#accountId').val(accountId); // Set the account ID in the hidden input
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign Up - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .navbar-brand img {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #007bff;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .btn-success {
+            width: 100%;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Circular progress bar */
+        .progress-circle {
+            margin: auto;
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        .progress-circle svg {
+            transform: rotate(-90deg);
+            transition: stroke-dashoffset 0.35s;
+            transform-origin: 50% 50%;
+        }
+        .progress-circle .circle-bg {
+            fill: none;
+            stroke: #e6e6e6;
+            stroke-width: 3;
+        }
+        .progress-circle .circle {
+            fill: none;
+            stroke: #28a745;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: 0 100;
+        }
+        .progress-circle .percentage {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/">
+            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
+            Finance Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">
+                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828395.png" style="width: 30px; height: 30px;" alt="Login Icon"> Login
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h2><i class="fas fa-user-plus"></i> Sign Up</h2>
+        <form th:action="@{/register}" method="post" id="signupForm">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="contact"><i class="fas fa-phone"></i> Contact Information (Phone)</label>
+                <input type="text" class="form-control" id="contact" name="contact" required>
+            </div>
+            <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Sign Up</button>
+        </form>
+        <!-- Circular progress bar -->
+        <div class="progress-circle" id="progressCircle" style="display:none">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+                <path class="circle-bg"
+                    d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path class="circle"
+                    stroke-dasharray="0, 100"
+                    d="M18 2.0845
+                    a 15.9155 15.9155 0 0 1 0 31.831
+                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <text x="18" y="20.35" class="percentage">0%</text>
+            </svg>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show progress bar on form submission
+        $('#signupForm').submit(function() {
+            $('#progressCircle').show();
+            $('.btn-success').hide();
+        });
+    </script>
+</body>
+</html>

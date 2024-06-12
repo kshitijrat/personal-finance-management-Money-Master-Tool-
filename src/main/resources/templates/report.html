@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Financial Report - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background: #f8f9fa;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        body.loaded {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: #007bff;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            width: 50px;
+            height: 4px;
+            background: #007bff;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            border-radius: 2px;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        p strong {
+            color: #007bff;
+        }
+        .fa-file-alt {
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .icon {
+            font-size: 3em;
+            color: #007bff;
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="icon">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        <h2>Financial Report</h2>
+        <p><strong>Report ID:</strong> <span th:text="${report.reportId}"></span></p>
+        <p><strong>Report Name:</strong> <span th:text="${report.reportName}"></span></p>
+        <p><strong>Generated Date:</strong> <span th:text="${report.reportGeneratedDate}"></span></p>
+    </div>
+
+    <!-- Bootstrap and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script>
+        // Page load animation
+        $(document).ready(function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Credit Card - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #007bff;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        .form-control, .btn {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .form-control:focus, .btn:focus {
+            transform: scale(1.02);
+        }
+
+        .btn {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-group input {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .container {
+                margin-top: 30px;
+                padding: 20px;
+            }
+        }
+
+        /* Custom Dialog */
+        #logoutModal {
+            display: none;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1050;
+            overflow: auto;
+        }
+
+        .modal-dialog {
+            margin: 30% auto;
+            width: 350px;
+        }
+
+        .modal-content {
+            border-radius: 10px;
+        }
+
+        .modal-header {
+            border-bottom: none;
+            background-color: #007bff;
+            color: #fff;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .modal-footer {
+            border-top: none;
+            background-color: #f1f1f1;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .modal-title {
+            color: #fff;
+        }
+
+        .modal-body p {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .btn-logout {
+            color: #fff;
+            background-color: #dc3545;
+            border-radius: 20px;
+            padding: 8px 20px;
+        }
+
+        .btn-logout:hover {
+            color: #fff;
+            background-color: #c82333;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/">
+            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
+            Finance Manager
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/user-dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <h2><i class="fas fa-credit-card"></i> Add Credit Card</h2>
+
+            <!-- Success Message -->
+            <div th:if="${successMessage}" class="alert alert-success" role="alert">
+                <span th:text="${successMessage}"></span>
+            </div>
+
+            <!-- Error Message -->
+            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+                <span th:text="${errorMessage}"></span>
+            </div>
+
+            <form th:action="@{/add-credit-card}" method="post">
+                <div class="form-group">
+                    <label for="cardName">Card Name</label>
+                    <input type="text" class="form-control" id="cardName" placeholder="e.g. Platinum Card" name="cardName" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardType">Card Type</label>
+                    <input type="text" class="form-control" id="cardType" placeholder="e.g. Credit, Debit, Prepaid" name="cardType" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" class="form-control" placeholder="e.g. 16 digit number" id="cardNumber" name="cardNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="creditLimit">Credit Limit</label>
+                    <input type="number" class="form-control" placeholder="e.g. 20000" id="creditLimit" name="creditLimit" required>
+                </div>
+                <div class="form-group">
+                    <label for="balance">Balance</label>
+                    <input type="number" class="form-control" placeholder="e.g. 1000" id="balance" name="balance" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Credit Card</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Dialog -->
+    <div id="logoutModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Logout Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a href="/logout" class="btn btn-logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#logoutBtn").click(function () {
+                $("#logoutModal").modal('show');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bank Accounts - Personal Finance Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Custom Styles */
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: #007bff;
+            font-size: 1.2rem;
+        }
+
+        .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            color: #007bff;
+        }
+
+        .navbar-nav .nav-link {
+            color: #007bff;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #0056b3 !important;
+        }
+
+        .navbar-nav .nav-link::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: #007bff;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: none;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border: none;
+        }
+
+        /* Circular Progress Bar */
+        .progress-circle {
+            margin: auto;
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+
+        .progress-circle svg {
+            transform: rotate(-90deg);
+            transition: stroke-dashoffset 0.35s;
+            transform-origin: 50% 50%;
+        }
+
+        .progress-circle .circle-bg {
+            fill: none;
+            stroke: #e6e6e6;
+            stroke-width: 3;
+        }
+
+        .progress-circle .circle {
+            fill: none;
+            stroke: #007bff;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: 0 100;
+        }
+
+        .progress-circle .percentage {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Logo">
+                Finance Manager
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">
+                            <img style="width: 25px; height: 25px;" src="https://cdn-icons-png.flaticon.com/128/14759/14759468.png" alt="Dashboard" class="mr-2">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="logoutLink" class="nav-link" href="javascript:void(0)">
+                            <img style="width: 25px; height: 25px;" src="https://cdn-icons-png.flaticon.com/128/14249/14249631.png" alt="Logout" class="mr-2">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4 form-container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0"><i class="fas fa-university mr-2"></i>Bank Accounts</h2>
+            </div>
+            <div class="card-body">
+                <!-- Alert messages -->
+                <div th:if="${successMessage}" class="alert alert-success" role="alert">
+                    <span th:text="${successMessage}"></span>
+                </div>
+                <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+                    <span th:text="${errorMessage}"></span>
+                </div>
+
+                <form th:action="@{/add-bank-account}" method="post" id="bankAccountForm">
+                    <div class="form-group">
+                        <label for="bankName">Bank Name</label>
+                        <input type="text" class="form-control" id="bankName" name="bankName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountType">Account Type</label>
+                        <input type="text" class="form-control" id="accountType" name="accountType" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="accountNumber">Account Number</label>
+                        <input type="text" class="form-control" id="accountNumber" name="accountNo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="balance">Balance</label>
+                        <input type="number" class="form-control" id="balance" name="balance" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle mr-2"></i>Add Bank Account</button>
+                </form>
+                <!-- Circular progress bar -->
+                <div class="progress-circle" id="progressCircle" style="display:none">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                            d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path class="circle"
+                            stroke-dasharray="0, 100"
+                            d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <text x="18" y="20.35" class="percentage">0%</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a href="/logout" class="btn btn-primary">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show progress bar on form submission
+        $('#bankAccountForm').submit(function() {
+            $('#progressCircle').show();
+            $('.btn-primary').hide();
+        });
+    </script>
+</body>
+</html>
