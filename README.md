@@ -10,7 +10,7 @@
 - ## Technologies
 - Java
 - Spring Boot
-- Spring Framewor (MVC, Security, Validation , ORM, JDBC)
+- Spring Framework (MVC, Security, Validation , ORM, JDBC, Thymeleaf, RestApi)
 - HTML
 - CSS
 - JavaScript
