@@ -16,7 +16,7 @@
             border: none;
         }
         .card-header {
-            background-color: #007bff;
+            background-color: #353638;
             color: white;
             font-weight: bold;
         }
@@ -147,20 +147,22 @@
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
                     label: 'Expenses',
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'gray',
+                    borderColor: 'black',
                     borderWidth: 1,
                     data: [1000, 1500, 1200, 800, 2000, 1800, 1700, 1900, 1600, 2200, 2100, 2400]
                 }]
             };
 
             var pieChartData = {
-                labels: ['Income', 'Expenses'],
+                labels: ['Income', 'Expenses', 'Saving'],
                 datasets: [{
-                    data: [4000, 3200],
+                    data: [8000, 3200,2000],
                     backgroundColor: [
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 99, 132, 0.5)'
+                        'rgba(0,0,255)',
+                        'red',
+                        'green'
+                        
                     ],
                     borderColor: [
                         'rgba(54, 162, 235, 1)',

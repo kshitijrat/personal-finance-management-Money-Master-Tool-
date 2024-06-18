@@ -1,15 +1,9 @@
 package com.kshitij.personalfinance.entities;
 
+import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
@@ -18,17 +12,30 @@ import lombok.Setter;
 @Entity
 public class Transaction {
     @Id
-    private int transactionId;
-    private String transactionDate;
-    private String transactionAmount;
-    private String transactionCategory;
-    @ManyToOne()
-    @JoinColumn(name = "cardId")
-    private Card card;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;  // Ensure your ID field matches the primary key type in your database
+
     @ManyToOne
-    @JoinColumn(name = "accountId")
+    @JoinColumn(name = "account_id")
     private BankAccount account;
+
     @ManyToOne
-    @JoinColumn(name = "investmentId")
-    private Investment investment;
+    @JoinColumn(name = "card_id")
+    private Card card;
+
+    @Column(name = "transaction_amount")
+    private Double transactionAmount;
+
+    @Column(name = "transaction_category")
+    private String transactionCategory;
+
+    @Column(name = "transaction_date")
+    private String transactionDate;
+
+    @Column(name = "transaction_type")
+    private String transactionType;
+
+    @Column(name = "transaction_id")
+    private String transactionId;
+
 }

@@ -38,4 +38,7 @@ public class FinancialReportController {
         financialReportService.createReport(report);
         return "redirect:/financial-reports";
     }
+
+    
+
 }

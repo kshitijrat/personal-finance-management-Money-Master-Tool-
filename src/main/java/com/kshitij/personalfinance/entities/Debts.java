@@ -29,15 +29,15 @@ public class Debts {
     private int emiStartTime;
     @ManyToOne
     private BankAccount bankAccount;
+    private String emi1;
     @Transient
-    private double emi1;
+    private String emi4;
     @Transient
-    private double emi4;
-    @Transient
-    private double emi12;
+    private String emi12;
     @Transient
     private double interest;
     @Transient
     private double totalCost;
+    private String userEmail;
     
 }

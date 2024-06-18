@@ -88,111 +88,100 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-custom navbar-light bg-light">
-        <a class="navbar-brand" style="color: #585858;" href="/">
-            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
-            Finance Manager
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+<nav class="navbar navbar-expand-lg navbar-custom navbar-light bg-light">
+    <a class="navbar-brand" style="color: #585858;" href="/">
+        <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
+        Finance Manager
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">
-                        <i class="bi bi-speedometer2" style="font-size: 1.5rem; vertical-align: middle;"></i>
-                        Dashboard
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link logout" href="#">
-                        <i class="bi bi-box-arrow-right" style="font-size: 1.5rem; vertical-align: middle;"></i>
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container animate__animated animate__fadeIn">
-        <div class="row justify-content-center">
-            <div class="col-md-6 animated-input">
-                <h2><i class="fas fa-exchange-alt"></i> Transactions</h2>
+        <span class="navbar-togglericon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item">
+<a class="nav-link" href="/dashboard">
+<i class="bi bi-speedometer2" style="font-size: 1.5rem; vertical-align: middle;"></i>
+Dashboard
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link logout" href="#">
+<i class="bi bi-box-arrow-right" style="font-size: 1.5rem; vertical-align: middle;"></i>
+Logout
+</a>
+</li>
+</ul>
+</div>
 
-                <!-- Success and Error Messages -->
-                <div th:if="${successMessage}" class="alert alert-success animate__animated animate__fadeInDown" th:text="${successMessage}"></div>
-                <div th:if="${errorMessage}" class="alert alert-danger animate__animated animate__fadeInDown" th:text="${errorMessage}"></div>
+</nav>
+<div class="container animate_animated animate_fadeIn">
+    <div class="row justify-content-center">
+        <div class="col-md-6 animated-input">
+            <h2><i class="fas fa-exchange-alt"></i> Transactions</h2>        <!-- Success and Error Messages -->
+        <div th:if="${successMessage}" class="alert alert-success animate_animated animate_fadeInDown" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert alert-danger animate_animated animate_fadeInDown" th:text="${errorMessage}"></div>
 
-                <form th:action="@{/add-transaction}" method="post">
-                    <div class="form-group">
-                        <label for="transactionDate"><i class="fas fa-calendar-alt"></i> Date</label>
-                        <input type="date" class="form-control" id="transactionDate" name="transactionDate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="transactionAmount"><i class="fas fa-dollar-sign"></i> Amount</label>
-                        <input type="number" class="form-control" id="transactionAmount" name="transactionAmount" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="transactionType"><i class="fas fa-tags"></i> Type</label>
-                        <select class="form-control" id="transactionType" name="transactionType">
-                            <option value="Debit">Debit</option>
-                            <option value="Credit">Credit</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="transactionCategory"><i class="fas fa-list"></i> Category</label>
-                        <input type="text" class="form-control" placeholder="e.g. grocery etc." id="transactionCategory" name="transactionCategory" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="accountID"><i class="fas fa-university"></i> Account ID</label>
-                        <input type="number" class="form-control" id="accountID" name="accountID">
-                    </div>
-                    <div class="form-group">
-                        <label for="cardID"><i class="fas fa-credit-card"></i> Card ID</label>
-                        <input type="number" class="form-control" id="cardID" name="cardID">
-                    </div>
-                    <div class="form-group">
-                        <label for="investmentID"><i class="fas fa-chart-line"></i> Investment ID</label>
-                        <input type="number" class="form-control" id="investmentID" name="investmentID">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block animate__animated animate__pulse animate__infinite">Add Transaction</button>
-                </form>
+        <form th:action="@{/add-transaction}" method="post">
+            <div class="form-group">
+                <label for="transactionAmount"><i class="fas fa-dollar-sign"></i> Amount</label>
+                <input type="number" class="form-control" id="transactionAmount" name="transactionAmount" required>
+            </div>
+            <div class="form-group">
+                <label for="transactionType"><i class="fas fa-tags"></i> Type</label>
+                <select class="form-control" id="transactionType" name="transactionType">
+                    <option value="Debit">Debit</option>
+                    <option value="Credit">Credit</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="transactionCategory"><i class="fas fa-list"></i> Category</label>
+                <input type="text" class="form-control" placeholder="e.g. grocery etc." id="transactionCategory" name="transactionCategory" required>
+            </div>
+            <div class="form-group">
+                <label for="accountID"><i class="fas fa-university"></i> Account ID</label>
+                <input type="number" class="form-control" id="accountID" name="accountId">
+            </div>
+            <div class="form-group">
+                <label for="cardID"><i class="fas fa-credit-card"></i> Card ID</label>
+                <input type="number" class="form-control" id="cardID" name="cardId">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block animate_animated animatepulse animate_infinite">Add Transaction</button>
+        </form>
+    </div>
+</div>
+</div>
+<!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <a href="/logout" class="btn btn-primary">Yes</a>
             </div>
         </div>
     </div>
-
-    <!-- Logout Confirmation Modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to logout?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <a href="/logout" class="btn btn-primary">Yes</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Display logout confirmation modal
-        $(document).ready(function() {
-            $('.logout').click(function(e) {
-                e.preventDefault();
-                $('#logoutModal').modal('show');
-            });
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Display logout confirmation modal
+    $(document).ready(function() {
+        $('.logout').click(function(e) {
+            e.preventDefault();
+            $('#logoutModal').modal('show');
         });
-    </script>
+    });
+</script>
 </body>
 </html>

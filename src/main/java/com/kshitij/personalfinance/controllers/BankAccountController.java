@@ -1,6 +1,8 @@
 package com.kshitij.personalfinance.controllers;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,6 +39,7 @@ public class BankAccountController {
             bankAccount.setUser(user);
             String upperCaseName = bankAccount.getBankName().toUpperCase();
             bankAccount.setBankName(upperCaseName);
+            bankAccount.setDepositeDate(currDate());
             bankAccountService.addBankAccount(bankAccount);
             redirectAttributes.addFlashAttribute("successMessage", "Bank account added successfully!");
         } catch (Exception e) {
@@ -47,5 +50,12 @@ public class BankAccountController {
 
     private String getCurrentUserEmail(Authentication authentication) {
         return authentication.getName();
+    }
+
+    private String currDate() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-YYYY HH:mm:ss");
+        String formattedDateTime = currentDateTime.format(formatter);
+        return formattedDateTime;
     }
 }

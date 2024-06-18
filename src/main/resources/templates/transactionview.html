@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Transactions Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h2>Transactions</h2>
+        <!-- User Info Container -->
+        <div class="user-info mb-4">
+            <ul>
+                <li><strong>UserName:</strong> <span th:text="${userName}"></span> </li>
+                <li><strong>Email:</strong> <span th:text="${email}"></span> </li>
+                <li><strong>Account Number:</strong> <span th:text="${accNo}"></span> </li>
+                <li><strong>Current Balance:</strong> <span th:text="${deposite}"></span>, &nbsp; <span th:text="${lastdate}"></span></li>
+            </ul>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Account</th>
+                    <th>Card</th>
+                    <th>Transaction ID</th>
+                    <!-- Add more headers as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="transaction : ${transactionsPage.content}">
+                    <td th:text="${transaction.id}"></td>
+                    <td th:text="${transaction.transactionDate}"></td>
+                    <td th:classappend="${transaction.transactionType == 'Debit'} ? 'text-danger' : 'text-success'"
+                        th:text="${transaction.transactionAmount}"></td>
+                    <td th:text="${transaction.transactionCategory}"></td>
+                    <td th:text="${transaction.account.accountNo}"></td>
+                    <td th:text="${transaction.card.cardNumber}"></td>
+                    <td th:text="${transaction.transactionId}"></td>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Download Button -->
+        <button type="button" class="btn btn-primary mb-3" id="downloadBtn">Download Transactions</button>
+
+        <!-- Pagination -->
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${transactionsPage.first} ? 'disabled'">
+                    <a class="page-link" th:href="@{/transactionsview?page=0}" aria-label="First">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item" th:classappend="${transactionsPage.first} ? 'disabled'">
+                    <a class="page-link" th:href="@{/transactionsview?page=${transactionsPage.number - 1}}"
+                        aria-label="Previous">
+                        <span aria-hidden="true">&lsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, transactionsPage.totalPages - 1)}"
+                    th:classappend="${transactionsPage.number == i} ? 'active'">
+                    <a class="page-link" th:href="@{/transactionsview?page=${i}}" th:text="${i + 1}"></a>
+                </li>
+                <li class="page-item" th:classappend="${transactionsPage.last} ? 'disabled'">
+                    <a class="page-link" th:href="@{/transactionsview?page=${transactionsPage.number + 1}}"
+                        aria-label="Next">
+                        <span aria-hidden="true">&rsaquo;</span>
+                    </a>
+                </li>
+                <li class="page-item" th:classappend="${transactionsPage.last} ? 'disabled'">
+                    <a class="page-link" th:href="@{/transactionsview?page=${transactionsPage.totalPages - 1}}"
+                        aria-label="Last">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript for downloading all transactions
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            // Retrieve all transaction data
+            let rows = document.querySelectorAll('tbody tr');
+            let csvContent = "data:text/csv;charset=utf-8,"
+
+            // Iterate through each row and extract data
+            rows.forEach(function (row) {
+                let rowData = [];
+                let cols = row.getElementsByTagName("td");
+
+                // Iterate through each column and push data to rowData array
+                for (let i = 0; i < cols.length; i++) {
+                    rowData.push(cols[i].innerText);
+                }
+
+                // Join rowData with comma separator and add new line character
+                let csvRow = rowData.join(",");
+                csvContent += csvRow + "\r\n";
+            });
+
+            // Create a link element and trigger download
+            let encodedUri = encodeURI(csvContent);
+            let link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "transactions.csv");
+            document.body.appendChild(link);
+            link.click();
+        });
+    </script>
+</body>
+
+</html>

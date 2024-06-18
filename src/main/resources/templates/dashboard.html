@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/static/css/styles.css">
     <style>
+        body{
+            filter: drop-shadow(8px);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgb(240, 234, 234), rgb(255, 255, 255));
+            margin: 0;
+            /* background-image: url("https://images.pexels.com/photos/13785111/pexels-photo-13785111.jpeg?auto=compress&cs=tinysrgb&w=400"); */
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: blur(8);
+            -webkit-filter: blur(8);
+        }
         .navbar-brand img {
             width: 30px;
             height: 30px;
@@ -278,7 +290,9 @@
             fill: rgb(255, 102, 47);
         }
 
-        .ratdiv{
+        
+
+        .ratdiv {
             width: 100%;
             height: fit-content;
             justify-content: center;
@@ -286,14 +300,13 @@
             padding: 5px;
             margin: 3px;
         }
-
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="/">
-            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Logo">
+            <img src="https://cdn-icons-png.flaticon.com/128/10842/10842490.png" alt="Logo">
             Finance Manager
         </a>
         <div class="collapse navbar-collapse">
@@ -325,13 +338,12 @@
                             <div class="text">Logout</div>
                         </button>
                     </a>
-
                 </li>
             </ul>
         </div>
     </nav>
-    <div class="container mt-4">
-        <h2>User Dashboard</h2>
+    <div class="container mt-4 w-full h-full">
+        <h2>Dashboard</h2>
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" href="#bank-accounts" data-toggle="tab">
@@ -341,21 +353,22 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#credit-cards" data-toggle="tab">
-                    <img src="https://cdn-icons-png.flaticon.com/128/484/484167.png" alt="Credit Cards Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/8983/8983163.png" alt="Credit Cards Icon">
                     Cards
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#investments" data-toggle="tab">
-                    <img src="https://cdn-icons-png.flaticon.com/128/888/888857.png" alt="Investments Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/5501/5501360.png" alt="Investments Icon">
                     Investments
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#transactions" data-toggle="tab">
-                    <img src="https://cdn-icons-png.flaticon.com/128/126/126474.png" alt="Transactions Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/14594/14594654.png" alt="Transactions Icon">
                     Transactions
                 </a>
+                
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#budgets" data-toggle="tab">
@@ -384,27 +397,29 @@
                 </h3>
                 <a class="btn btn-primary" href="/bank-accounts">Manage Bank Accounts</a>
                 <a class="btn btn-primary" href="/bankstatus">Check Bank Status</a>
+                <a class="btn btn-primary" href="/deposite">Deposite Amount</a>
             </div>
             <div class="tab-pane fade" id="credit-cards">
                 <h3>
-                    <img src="https://cdn-icons-png.flaticon.com/128/484/484167.png" alt="Credit Cards Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/8983/8983163.png" alt="Credit Cards Icon">
                     Credit Cards
                 </h3>
                 <a class="btn btn-primary" href="/credit-cards">Manage Credit Cards</a>
             </div>
             <div class="tab-pane fade" id="investments">
                 <h3>
-                    <img src="https://cdn-icons-png.flaticon.com/128/888/888857.png" alt="Investments Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/5501/5501360.png" alt="Investments Icon">
                     Investments
                 </h3>
                 <a class="btn btn-primary" href="/investments">Manage Investments</a>
             </div>
             <div class="tab-pane fade" id="transactions">
                 <h3>
-                    <img src="https://cdn-icons-png.flaticon.com/128/126/126474.png" alt="Transactions Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/128/14594/14594654.png" alt="Transactions Icon">
                     Transactions
                 </h3>
-                <a class="btn btn-primary" href="/transactions">View Transactions</a>
+                <a class="btn btn-primary" href="/transactions">Add Transactions</a>
+                <a class="btn btn-primary" href="/checkpassword">View Transactions</a>
             </div>
             <div class="tab-pane fade" id="budgets">
                 <h3>
@@ -427,7 +442,9 @@
                     Debts
                 </h3>
                 <a class="btn btn-primary" href="/debt">Manage Debts</a>
+                <a class="btn btn-primary" href="/debts_status">View Your Debts</a>
             </div>
+
         </div>
     </div>
 
@@ -453,7 +470,8 @@
         </div>
     </div>
 
-
+   
+   
     <!-- Feedback Modal -->
     <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel"
         aria-hidden="true">
@@ -486,84 +504,79 @@
                     </form>
                     <div class="ratdiv">
                         <div class="rating-card">
-                        <div class="text-wrapper">
-                          <p class="text-primary">Please Rate Your Experience</p>
-                          <p class="text-secondary">to help us serve you better</p>
+                            <div class="text-wrapper">
+                                <p class="text-primary">Please Rate Your Experience</p>
+                                <p class="text-secondary">to help us serve you better</p>
+                            </div>
+
+                            <div class="rating-stars-container">
+                                <input value="star-5" name="star" id="star-5" type="radio" />
+                                <label for="star-5" class="star-label">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                            pathLength="360"></path>
+                                    </svg>
+                                </label>
+                                <input value="star-4" name="star" id="star-4" type="radio" />
+                                <label for="star-4" class="star-label">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                            pathLength="360"></path>
+                                    </svg>
+                                </label>
+                                <input value="star-3" name="star" id="star-3" type="radio" />
+                                <label for="star-3" class="star-label">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                            pathLength="360"></path>
+                                    </svg>
+                                </label>
+                                <input value="star-2" name="star" id="star-2" type="radio" />
+                                <label for="star-2" class="star-label">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                            pathLength="360"></path>
+                                    </svg>
+                                </label>
+                                <input value="star-1" name="star" id="star-1" type="radio" />
+                                <label for="star-1" class="star-label">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                            pathLength="360"></path>
+                                    </svg>
+                                </label>
+                            </div>
+                            <div class="socials-container">
+                                <a class="social-button" href="#">
+                                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="social-button" href="#">
+                                    <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a class="social-button" href="#">
+                                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z">
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                      
-                        <div class="rating-stars-container">
-                          <input value="star-5" name="star" id="star-5" type="radio" />
-                          <label for="star-5" class="star-label">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                                pathLength="360"
-                              ></path>
-                            </svg>
-                          </label>
-                          <input value="star-4" name="star" id="star-4" type="radio" />
-                          <label for="star-4" class="star-label">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                                pathLength="360"
-                              ></path>
-                            </svg>
-                          </label>
-                          <input value="star-3" name="star" id="star-3" type="radio" />
-                          <label for="star-3" class="star-label">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                                pathLength="360"
-                              ></path>
-                            </svg>
-                          </label>
-                          <input value="star-2" name="star" id="star-2" type="radio" />
-                          <label for="star-2" class="star-label">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                                pathLength="360"
-                              ></path>
-                            </svg>
-                          </label>
-                          <input value="star-1" name="star" id="star-1" type="radio" />
-                          <label for="star-1" class="star-label">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
-                                pathLength="360"
-                              ></path>
-                            </svg>
-                          </label>
-                        </div>
-                        <div class="socials-container">
-                          <a class="social-button" href="#">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"
-                              ></path>
-                            </svg>
-                          </a>
-                          <a class="social-button" href="#">
-                            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-                              ></path>
-                            </svg>
-                          </a>
-                          <a class="social-button" href="#">
-                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
-                      </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

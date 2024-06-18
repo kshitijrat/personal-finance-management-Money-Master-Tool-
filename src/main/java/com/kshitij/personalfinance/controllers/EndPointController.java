@@ -1,6 +1,5 @@
 package com.kshitij.personalfinance.controllers;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +7,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kshitij.personalfinance.entities.BankAccount;
-import com.kshitij.personalfinance.entities.Budget;
 import com.kshitij.personalfinance.entities.Card;
+import com.kshitij.personalfinance.entities.Transaction;
 import com.kshitij.personalfinance.entities.User;
 import com.kshitij.personalfinance.repo.UserRepository;
 import com.kshitij.personalfinance.services.BankAccountService;
@@ -57,7 +55,7 @@ public class EndPointController {
         String email = authentication.getName();
         User user = userRepository.findByUserEmail(email);
         List<BankAccount> banklist = bankSevice.getBanksForUser(user);
-        model.addAttribute("bank",banklist);
+        model.addAttribute("bank", banklist);
         return "bankstatus";
     }
 
@@ -73,43 +71,42 @@ public class EndPointController {
     }
 
     @GetMapping("/transactions")
-    public String showTranscation() {
+    public String showTranscation(Model model) {
+        model.addAttribute("transaction", new Transaction());
         return "transactions";
     }
 
     @GetMapping("/budget-detail")
-    public String showBudgetDetails(){
+    public String showBudgetDetails() {
         return "budget_details";
     }
 
     // @GetMapping("/financial-reports")
     // public String showFinancialReports() {
-    //     return "financial_reports";
+    // return "financial_reports";
     // }
-
-    @GetMapping("/debt_status")
-    public String showDebtsStatus(){
-        return "debt_status";
-    }
 
     @GetMapping("/debt")
     public String showDebt() {
         return "debt";
     }
 
-
     @GetMapping("/profile")
-    public String showProfile(){
+    public String showProfile() {
         return "profile";
     }
 
     @GetMapping("/about")
-    public String showAbout(){
+    public String showAbout() {
         return "about";
     }
 
     @GetMapping("/contact")
-    public String showContact(){
+    public String showContact() {
         return "contact";
+    }
+    @GetMapping("/checkpassword")
+    public String showCheckPassword() {
+        return "checkpassword";
     }
 }

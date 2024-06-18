@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bank Accounts - Personal Finance Management</title>
+    <title>Debts - Personal Finance Management</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -142,7 +142,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Logo">
+                <img src="https://cdn-icons-png.flaticon.com/128/10842/10842490.png" alt="Logo">
                 Finance Manager
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -183,28 +183,28 @@
 
                 <form th:action="@{/add-debts}" method="post" id="bankAccountForm">
                     <div class="form-group">
-                        <label for="bankName">Debt Type</label>
-                        <input type="text" placeholder="e.g. loan" class="form-control" id="bankName" name="debtType" required>
+                        <label for="debtType">Debt Type</label>
+                        <input type="text" placeholder="e.g. loan" class="form-control" id="debtType" name="debtType" required>
                     </div>
                     <div class="form-group">
-                        <label for="accountType">Loan Amount</label>
-                        <input type="text" class="form-control" id="accountType" name="loanAmount" required>
+                        <label for="loanAmount">Loan Amount</label>
+                        <input type="number" class="form-control" id="loanAmount" name="loanAmount" required>
                     </div>
                     <div class="form-group">
-                        <label for="accountNumber">rate</label>
-                        <input type="number" class="form-control" id="accountNumber" name="rate" required>
+                        <label for="rate">Rate</label>
+                        <input type="number" class="form-control" id="rate" name="rate" required>
                     </div>
                     <div class="form-group">
-                        <label for="balance">Time Period</label>
-                        <input type="number" class="form-control" id="balance" name="timePeriod" required>
+                        <label for="timePeriod">Time Period</label>
+                        <input type="number" class="form-control" id="timePeriod" name="timePeriod" required>
                     </div>
                     <div class="form-group">
-                        <label for="balance">Emi Start Time</label>
-                        <input type="number" class="form-control" id="balance" name="emiStartTime" required>
+                        <label for="emiStartTime">Emi Start Time</label>
+                        <input type="number" class="form-control" id="emiStartTime" name="emiStartTime" required>
                     </div>
                     <div class="form-group">
-                        <label for="balance">Bank Account</label>
-                        <input type="text" placeholder="e.g. accountNo" class="form-control" id="balance" name="bankAccount" required>
+                        <label for="bankAccount">Bank Account</label>
+                        <input type="text" placeholder="e.g. accountNo" class="form-control" id="bankAccount" name="bankAccount" required>
                     </div>
                     <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle mr-2">Add Debts</i></button>
                 </form>

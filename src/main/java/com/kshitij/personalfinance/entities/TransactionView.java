@@ -1,11 +1,9 @@
 package com.kshitij.personalfinance.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -15,25 +13,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "bankaccount")
+@Table(name = "transactionview")
 @Entity
-public class BankAccount {
+public class TransactionView {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int accountId;
-    private String bankName;
-    private String accountType;
-    @Column(unique =  true)
-    private String accountNo;
-    private String balance;
-    private String depositeDate;
-
-    //N:1
+    private int id;
+    private String description;
+    private double amount;
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
-    
-    // 1: N
-    // 1 acc -> N transaction
-
+    private BankAccount bankAccount;
+    private String currDate;
 }

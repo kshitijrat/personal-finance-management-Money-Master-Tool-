@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Amount</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Custom CSS file for animations -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate__animated {
+            animation-duration: 0.5s;
+        }
+
+        .animate__fadeInUp {
+            animation-name: fadeInUp;
+        }
+
+        .animate__delay-1s {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Deposit Amount</h2>
+        <!-- Alert messages -->
+        <div th:if="${successMessage}" class="alert alert-success" role="alert">
+            <span th:text="${successMessage}"></span>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+            <span th:text="${errorMessage}"></span>
+        </div>
+        
+        <form id="depositForm" action="/deposite-form" method="get">
+            <div class="form-group">
+                <label for="depositAmount">Enter Amount to Deposit:</label>
+                <input type="number" class="form-control" id="depositAmount" name="depositAmount" required>
+                <div class="invalid-feedback">Please enter a valid amount.</div>
+            </div>
+            <div class="form-group">
+                <label for="depositAmount">Account Number:</label>
+                <input type="text" class="form-control" id="depositAmount" name="accountNo" required>
+                <div class="invalid-feedback">Please enter a valid number.</div>
+            </div>
+            <div class="form-group">
+                <label for="depositAmount">Password:</label>
+                <input type="text" class="form-control" id="depositAmount" name="password" required>
+                <div class="invalid-feedback">Please enter a valid password.</div>
+            </div>
+            <button type="submit"
+                class="btn btn-primary btn-block animate_animated animatefadeInUp animate_delay-1s">Deposit</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+    <!-- <script>
+        // Form submission handling
+        document.getElementById('depositForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (this.checkValidity() === false) {
+                event.stopPropagation();
+            } else {
+                // Simulate deposit action (replace with actual logic)
+                let depositAmount = document.getElementById('depositAmount').value;
+                alert(Depositing $${ depositAmount }... (Simulation));
+                this.reset();
+            }
+            this.classList.add('was-validated');
+        });
+    </script> -->
+</body>
+
+</html>

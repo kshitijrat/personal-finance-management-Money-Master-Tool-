@@ -9,4 +9,5 @@ import com.kshitij.personalfinance.entities.BudgetCategory;
 
 public interface BudgetCategoryRepo extends JpaRepository<BudgetCategory, Integer>{
     List<BudgetCategory> findByBudget(Budget budget);
+    
 }

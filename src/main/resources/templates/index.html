@@ -8,6 +8,11 @@
     <style>
         body {
             background-color: #f8f9fa;
+            filter:opacity(1);
+            filter: blur(10);
+            background-image:-webkit-image-set("https://images.pexels.com/photos/7063776/pexels-photo-7063776.jpeg?auto=compress&cs=tinysrgb&w=400") ;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .wrapper {
@@ -42,11 +47,12 @@
             top: 0;
             font-size: 14px;
             background: #fff;
+            
             color: #fff;
             padding: 5px 8px;
             border-radius: 5px;
             box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-            opacity: 0;
+            opacity:0;
             pointer-events: none;
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
@@ -292,9 +298,9 @@
 <body>
 
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="/">
-            <img src="https://cdn-icons-gif.flaticon.com/15401/15401475.gif" alt="Finance Manager Logo">
-            Finance Manager
+        <a class="navbar-brand" href="/" style="font-family: 'Times New Roman', Times, serif;">
+            <img src="update pf/logo5.png" alt="Finance Manager Logo">
+            POCKET MASTER 
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -302,12 +308,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">
-                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828395.png"
-                            style="width: 30px; height: 30px;" alt="Login Icon"> Login
-                    </a>
-                </li>
+                
 
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
@@ -318,7 +319,7 @@
 
     <div class="container">
         <div class="jumbotron mt-4">
-            <h1 class="display-4">Welcome to Personal Finance Manager</h1>
+            <h1 class="display-4">Welcome to POCKET MASTER</h1>
             <p class="lead">Track your expenses and manage your budget efficiently.</p>
             <hr class="my-4">
             <p>Get started by logging in or signing up.</p>
@@ -339,7 +340,6 @@
                             </svg>
                         </button>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -347,11 +347,11 @@
 
     <!-- About Footer -->
     <footer class="footer mt-auto py-3"
-        style="border-top-right-radius: 80px; border-top-left-radius: 80px; box-shadow: 5px 5px; opacity: initial;">
+        style="box-shadow: 5px 5px; opacity:70%;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5><a href="/about">About</a></h5>
+                    <h5><a href="/about"></a></h5>
                     <p>Empowering individuals to take control of their finances, our project offers a seamless,
                         user-friendly platform for comprehensive personal financial management. Join us in navigating
                         the path to financial freedom and security.
