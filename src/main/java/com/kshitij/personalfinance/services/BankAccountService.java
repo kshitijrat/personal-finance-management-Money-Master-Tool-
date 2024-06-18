@@ -28,6 +28,11 @@ public class BankAccountService {
         return repo.findAllByUser(user);        
     }
 
+    public BankAccount findBankAccount(String bankAccountNo){
+        BankAccount bank = repo.findByAccountNo(bankAccountNo);
+        return bank;
+    }
+
     public String getCurrentUser(Authentication authentication){
         return authentication.getName();
     }

@@ -87,6 +87,17 @@ public class EndPointController {
     //     return "financial_reports";
     // }
 
+    @GetMapping("/debt_status")
+    public String showDebtsStatus(){
+        return "debt_status";
+    }
+
+    @GetMapping("/debt")
+    public String showDebt() {
+        return "debt";
+    }
+
+
     @GetMapping("/profile")
     public String showProfile(){
         return "profile";

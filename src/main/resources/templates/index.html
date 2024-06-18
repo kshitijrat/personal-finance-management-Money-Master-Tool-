@@ -10,6 +10,93 @@
             background-color: #f8f9fa;
         }
 
+        .wrapper {
+            display: inline-flex;
+            list-style: none;
+            height: 120px;
+            width: 100%;
+            padding-top: 40px;
+            font-family: "Poppins", sans-serif;
+            justify-content: center;
+        }
+
+        .wrapper .icon {
+            position: relative;
+            background: #161515;
+            border-radius: 50%;
+            margin: 10px;
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .wrapper .tooltip {
+            position: absolute;
+            top: 0;
+            font-size: 14px;
+            background: #fff;
+            color: #fff;
+            padding: 5px 8px;
+            border-radius: 5px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .wrapper .tooltip::before {
+            position: absolute;
+            content: "";
+            height: 8px;
+            width: 8px;
+            background: #fff;
+            bottom: -3px;
+            left: 50%;
+            transform: translate(-50%) rotate(45deg);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .wrapper .icon:hover .tooltip {
+            top: -45px;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .wrapper .icon:hover span,
+        .wrapper .icon:hover .tooltip {
+            text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .wrapper .facebook:hover,
+        .wrapper .facebook:hover .tooltip,
+        .wrapper .facebook:hover .tooltip::before {
+            background: #1877f2;
+            color: #fff;
+        }
+
+        .wrapper .twitter:hover,
+        .wrapper .twitter:hover .tooltip,
+        .wrapper .twitter:hover .tooltip::before {
+            background: #1da1f2;
+            color: #fff;
+        }
+
+        .wrapper .instagram:hover,
+        .wrapper .instagram:hover .tooltip,
+        .wrapper .instagram:hover .tooltip::before {
+            background: #e4405f;
+            color: #fff;
+        }
+
+
         .navbar {
             background-color: #007bff;
         }
@@ -29,7 +116,7 @@
             background-color: #e9ecef;
             padding: 2rem 1rem;
             text-align: center;
-            background-image: url('https://cdn-icons-png.flaticon.com/128/4242/4242061.png');
+            background-image: url('https://cdn-icons-gif.flaticon.com/15401/15401475.gif');
             background-size: 100px;
             background-repeat: no-repeat;
             background-position: right bottom;
@@ -166,6 +253,39 @@
         .footer .social-icons a:hover {
             color: #007bff;
         }
+
+
+        button {
+            cursor: pointer;
+            font-weight: 700;
+            font-family: Helvetica, "sans-serif";
+            transition: all .2s;
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: green;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #496b8f;
+        }
+
+        button>svg {
+            width: 34px;
+            margin-left: 10px;
+            transition: transform .3s ease-in-out;
+        }
+
+        button:hover svg {
+            transform: translateX(5px);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
     </style>
 </head>
 
@@ -173,7 +293,7 @@
 
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="/">
-            <img src="https://cdn-icons-png.flaticon.com/128/4242/4242061.png" alt="Finance Manager Logo">
+            <img src="https://cdn-icons-gif.flaticon.com/15401/15401475.gif" alt="Finance Manager Logo">
             Finance Manager
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -188,12 +308,7 @@
                             style="width: 30px; height: 30px;" alt="Login Icon"> Login
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">
-                        <img src="https://cdn-icons-png.flaticon.com/128/747/747545.png"
-                            style="width: 30px; height: 30px;" alt="Sign Up Icon"> Sign Up
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
@@ -208,40 +323,88 @@
             <hr class="my-4">
             <p>Get started by logging in or signing up.</p>
             <div class="row justify-content-center">
-                <div class="col-md-3">
+                <!-- <div class="col-md-3">
                     <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>
-                </div>
+                </div> -->
                 <div class="col-md-3">
-                    <a class="btn btn-success btn-lg" href="/register" role="button">Sign Up</a>
+                    <a href="/login">
+                        <button>
+                            <span style="color: white;">Continue</span>
+                            <svg width="34" height="34" viewBox="0 0 74 74" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="37" cy="37" r="35.5" stroke="white" stroke-width="3"></circle>
+                                <path
+                                    d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z"
+                                    fill="white"></path>
+                            </svg>
+                        </button>
+                    </a>
+
                 </div>
             </div>
         </div>
     </div>
 
     <!-- About Footer -->
-    <footer class="footer mt-auto py-3" style="border-top-right-radius: 80px; border-top-left-radius: 80px; box-shadow: 5px 5px; opacity: initial;">
+    <footer class="footer mt-auto py-3"
+        style="border-top-right-radius: 80px; border-top-left-radius: 80px; box-shadow: 5px 5px; opacity: initial;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>About Us</h5>
+                    <h5><a href="/about">About</a></h5>
                     <p>Empowering individuals to take control of their finances, our project offers a seamless,
                         user-friendly platform for comprehensive personal financial management. Join us in navigating
                         the path to financial freedom and security.
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <h5>Contacts</h5>
+                    <h5><a href="/contact">Contacts</a></h5>
                     <p>123, Vijay Nagr, Indore, India</p>
                     <p>Email: codeX@gmail.com</p>
                     <p>Phone: +91-9577387493</p>
                 </div>
                 <div class="col-md-4">
-                    <h5>Follow Us</h5>
-                    <ul class="list-inline social-icons">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
+
+                    <!-- <li class="list-inline-item"><a href="#"><i class="fab fa-facebook"></i></a></li>
                         <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li> -->
+                    <ul class="wrapper">
+                        <h5>Follow Us</h5>
+                        <li class="icon facebook">
+                            <a href="">
+                                <span class="tooltip">Facebook</span>
+                                <svg viewBox="0 0 320 512" height="1.2em" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z">
+                                    </path>
+                                </svg>
+                            </a>
+
+                        </li>
+                        <li class="icon twitter">
+                            <a href="">
+                                <span class="tooltip">Twitter</span>
+                                <svg height="1.8em" fill="currentColor" viewBox="0 0 48 48"
+                                    xmlns="http://www.w3.org/2000/svg" class="twitter">
+                                    <path
+                                        d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429">
+                                    </path>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="icon instagram">
+                            <a href="">
+                                <span class="tooltip">Instagram</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" fill="currentColor"
+                                    class="bi bi-instagram" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

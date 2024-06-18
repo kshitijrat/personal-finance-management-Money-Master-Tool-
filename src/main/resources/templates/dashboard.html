@@ -19,6 +19,11 @@
             margin-right: 5px;
         }
 
+        .nav-link img:hover {
+            width: 40px;
+            height: 30px;
+        }
+
         .tab-content h3 {
             display: flex;
             align-items: center;
@@ -58,6 +63,230 @@
             background-color: #0056b3;
             color: white;
         }
+
+        .Btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition-duration: .3s;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+            background-color: #007bff;
+        }
+
+        /* plus sign */
+        .sign {
+            width: 100%;
+            transition-duration: .3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sign svg {
+            width: 17px;
+        }
+
+        .sign svg path {
+            fill: white;
+        }
+
+        /* text */
+        .text {
+            position: absolute;
+            right: 0%;
+            width: 0%;
+            opacity: 0;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition-duration: .3s;
+        }
+
+        /* hover effect on button width */
+        .Btn:hover {
+            width: 125px;
+            border-radius: 40px;
+            transition-duration: .3s;
+        }
+
+        .Btn:hover .sign {
+            width: 30%;
+            transition-duration: .3s;
+            padding-left: 20px;
+        }
+
+        /* hover effect button's text */
+        .Btn:hover .text {
+            opacity: 1;
+            width: 70%;
+            transition-duration: .3s;
+            padding-right: 10px;
+        }
+
+        /* button click effect*/
+        .Btn:active {
+            transform: translate(2px, 2px);
+        }
+
+        .button {
+            cursor: pointer;
+            position: relative;
+            padding: 10px 24px;
+            font-size: 14px;
+            color: rgb(221, 190, 54);
+            border: 2px solid rgb(221, 190, 54);
+            border-radius: 34px;
+            background-color: transparent;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            overflow: hidden;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: 50px;
+            height: 50px;
+            border-radius: inherit;
+            scale: 0;
+            z-index: -1;
+            background-color: rgb(193, 163, 98);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+
+        .button:hover::before {
+            scale: 3;
+        }
+
+        .button:hover {
+            color: #212121;
+            scale: 1.1;
+            box-shadow: 0 0px 20px rgba(240, 194, 97, 0.4);
+        }
+
+        .button:active {
+            scale: 1;
+        }
+
+        .rating-card {
+            width: 280px;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: #685ec0;
+            background: linear-gradient(to right bottom, #443e89, #0f0c29);
+            padding: 20px 20px;
+            border-radius: 10px;
+            gap: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.058);
+        }
+
+        .text-wrapper {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .text-primary {
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .text-secondary {
+            color: #cccccc;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .rating-stars-container {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .star-label svg {
+            fill: rgb(210, 210, 210);
+            width: 20px;
+            height: auto;
+        }
+
+        .rating-stars-container input {
+            appearance: unset;
+        }
+
+        .rating-stars-container input:hover~.star-label svg {
+            fill: rgb(255, 204, 185);
+        }
+
+        .rating-stars-container input:checked~.star-label svg {
+            fill: rgb(255, 238, 0);
+            animation: slide-in-fwd-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        @keyframes slide-in-fwd-center {
+            0% {
+                transform: scale(1.6);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .socials-container {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding-top: 20px;
+            border-top: 1px solid rgb(150, 150, 150);
+        }
+
+        .social-button {
+            text-decoration: none;
+        }
+
+        .social-button svg {
+            width: 15px;
+            fill: rgb(228, 228, 228);
+        }
+
+        .social-button:hover svg {
+            fill: rgb(255, 102, 47);
+        }
+
+        .ratdiv{
+            width: 100%;
+            height: fit-content;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            margin: 3px;
+        }
+
     </style>
 </head>
 
@@ -71,23 +300,33 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">
-                        <img src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png" alt="Profile Icon">
-                        Profile
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-                        <img src="https://cdn-icons-png.flaticon.com/128/1828/1828479.png" alt="Logout Icon">
-                        Logout
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#feedbackModal">
-                        <img src="https://cdn-icons-png.flaticon.com/128/682/682028.png" alt="Feedback Icon">
-                        Feedback
+                        <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
+                            style="width: 30px; height: 30px; margin-top: 10px;" alt="Profile Icon">
                     </a>
                 </li>
 
+                <li>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#feedbackModal">
+                        <button class="button">
+                            feedback
+                        </button>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <button class="Btn">
+
+                            <div class="sign"><svg viewBox="0 0 512 512">
+                                    <path
+                                        d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                                    </path>
+                                </svg></div>
+
+                            <div class="text">Logout</div>
+                        </button>
+                    </a>
+
+                </li>
             </ul>
         </div>
     </nav>
@@ -128,6 +367,12 @@
                 <a class="nav-link" href="#financial-reports" data-toggle="tab">
                     <img src="https://cdn-icons-png.flaticon.com/128/476/476745.png" alt="Financial Reports Icon">
                     Financial Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#debt" data-toggle="tab">
+                    <img src="https://cdn-icons-png.flaticon.com/128/15561/15561995.png" alt="Debt Icon">
+                    Debts
                 </a>
             </li>
         </ul>
@@ -175,6 +420,13 @@
                     Reports
                 </h3>
                 <a class="btn btn-primary" href="/financial-reports">Generate Reports</a>
+            </div>
+            <div class="tab-pane fade" id="debt">
+                <h3>
+                    <img src="https://cdn-icons-png.flaticon.com/128/15561/15561995.png" alt="Financial Reports Icon">
+                    Debts
+                </h3>
+                <a class="btn btn-primary" href="/debt">Manage Debts</a>
             </div>
         </div>
     </div>
@@ -232,6 +484,86 @@
                         </div>
                         <button type="submit" class="btn btn-primary"><i class="far fa-paper-plane"></i> Send</button>
                     </form>
+                    <div class="ratdiv">
+                        <div class="rating-card">
+                        <div class="text-wrapper">
+                          <p class="text-primary">Please Rate Your Experience</p>
+                          <p class="text-secondary">to help us serve you better</p>
+                        </div>
+                      
+                        <div class="rating-stars-container">
+                          <input value="star-5" name="star" id="star-5" type="radio" />
+                          <label for="star-5" class="star-label">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                pathLength="360"
+                              ></path>
+                            </svg>
+                          </label>
+                          <input value="star-4" name="star" id="star-4" type="radio" />
+                          <label for="star-4" class="star-label">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                pathLength="360"
+                              ></path>
+                            </svg>
+                          </label>
+                          <input value="star-3" name="star" id="star-3" type="radio" />
+                          <label for="star-3" class="star-label">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                pathLength="360"
+                              ></path>
+                            </svg>
+                          </label>
+                          <input value="star-2" name="star" id="star-2" type="radio" />
+                          <label for="star-2" class="star-label">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                pathLength="360"
+                              ></path>
+                            </svg>
+                          </label>
+                          <input value="star-1" name="star" id="star-1" type="radio" />
+                          <label for="star-1" class="star-label">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                                pathLength="360"
+                              ></path>
+                            </svg>
+                          </label>
+                        </div>
+                        <div class="socials-container">
+                          <a class="social-button" href="#">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"
+                              ></path>
+                            </svg>
+                          </a>
+                          <a class="social-button" href="#">
+                            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                              ></path>
+                            </svg>
+                          </a>
+                          <a class="social-button" href="#">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+                              ></path>
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
